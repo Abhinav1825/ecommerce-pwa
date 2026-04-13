@@ -40,7 +40,7 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 1.2rem;
-  align-items: end;
+  align-items: center;
 }
 
 .brand-wrap h1 {
@@ -62,6 +62,7 @@ body {
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: flex-end;
+  flex: 1;
 }
 
 .search-box {
@@ -74,7 +75,7 @@ body {
 .search-box input {
   border: none;
   outline: none;
-  min-width: min(390px, 62vw);
+  width: clamp(240px, 34vw, 420px);
   background: transparent;
   padding: 0.7rem 1rem;
   font-size: 0.95rem;
@@ -104,6 +105,7 @@ body {
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 1rem;
+  align-items: start;
 }
 
 .sidebar,
@@ -194,9 +196,12 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 0.95rem;
+  align-items: stretch;
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   padding: 0.85rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -246,6 +251,7 @@ button {
   width: 100%;
   color: #ffffff;
   background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+  margin-top: auto;
 }
 
 .add-btn:hover {
@@ -274,8 +280,12 @@ button {
   }
 
   .search-box input {
-    min-width: 0;
     width: 100%;
+  }
+
+  .store-tools {
+    width: 100%;
+    justify-content: flex-start;
   }
 }
 
@@ -285,6 +295,6 @@ button {
   }
 
   .sidebar {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
   }
 }

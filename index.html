@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Momentum PWA</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#114b5f">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-shape shape-a"></div>
+  <div class="bg-shape shape-b"></div>
+
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">Offline-Ready Experience</p>
+      <h1>Momentum Workspace</h1>
+      <p class="subtitle">A compact PWA with smooth motion, local persistence, and responsive controls.</p>
+      <div class="status-row">
+        <span id="status" class="status-pill">Online</span>
+        <button id="themeToggle" class="ghost-btn" type="button">Toggle Theme</button>
+      </div>
+    </header>
+
+    <section class="panel" aria-label="Save your notes">
+      <h2>Quick Capture</h2>
+      <div class="input-row">
+        <input id="dataInput" type="text" placeholder="Write something to keep offline..." maxlength="120">
+        <button id="saveBtn" type="button">Save</button>
+      </div>
+      <p id="feedback" class="feedback" aria-live="polite">Ready to save.</p>
+    </section>
+
+    <section class="panel" aria-label="Saved items list">
+      <div class="panel-head">
+        <h2>Saved Items</h2>
+        <button id="clearBtn" class="ghost-btn" type="button">Clear All</button>
+      </div>
+      <ul id="savedList" class="saved-list"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

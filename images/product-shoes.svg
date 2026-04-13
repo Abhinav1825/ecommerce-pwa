@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="350" viewBox="0 0 500 350">
+  <rect width="500" height="350" fill="#edf4ff"/>
+  <path d="M64 232h372c8 0 14 6 14 14v18H50v-18c0-8 6-14 14-14z" fill="#2f6fb0"/>
+  <path d="M88 220h248c22 0 41-15 46-36l10-42 52 78H88z" fill="#4e95de"/>
+  <circle cx="140" cy="254" r="8" fill="#d8ecff"/>
+  <circle cx="196" cy="254" r="8" fill="#d8ecff"/>
+  <circle cx="252" cy="254" r="8" fill="#d8ecff"/>
+  <text x="26" y="42" font-size="28" fill="#204878" font-family="Trebuchet MS">Trail Runner</text>
+</svg>

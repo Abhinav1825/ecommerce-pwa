@@ -1,16 +1,20 @@
-const CACHE_NAME = "momentum-cache-v2";
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/app.js",
-  "/manifest.json"
+const CACHE_NAME = "novacart-cache-v2";
+const APP_SHELL = [
+  "./",
+  "./index.html",
+  "./style.css",
+  "./app.js",
+  "./manifest.json",
+  "./images/icon.svg",
+  "./images/product-shoes.svg",
+  "./images/product-backpack.svg",
+  "./images/product-watch.svg",
+  "./images/product-earbuds.svg"
 ];
 
-// INSTALL
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
   );
   self.skipWaiting();
 });
@@ -24,16 +28,33 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// FETCH (Offline Support)
 self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((response) => response || fetch(event.request))
-  );
-});
+  if (event.request.method !== "GET") {
+    return;
+  }
 
-// SYNC (Basic simulation)
-self.addEventListener("sync", (event) => {
-  if (event.tag === "sync-data") {
-    console.log("Background sync triggered");
+  const requestUrl = new URL(event.request.url);
+
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
+  if (requestUrl.origin === self.location.origin) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) {
+          return cached;
+        }
+
+        return fetch(event.request).then((response) => {
+          const clonedResponse = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clonedResponse));
+          return response;
+        });
+      })
+    );
   }
 });

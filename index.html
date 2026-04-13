@@ -1,43 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Momentum PWA</title>
+  <meta name="theme-color" content="#0a7e8c">
+  <title>Ecommerce PWA</title>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#114b5f">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-shape shape-a"></div>
-  <div class="bg-shape shape-b"></div>
+  <div class="announcement">Free shipping above ₹1,499 • 7-day easy returns • COD available</div>
 
-  <main class="app-shell">
-    <header class="hero">
-      <p class="eyebrow">Offline-Ready Experience</p>
-      <h1>Momentum Workspace</h1>
-      <p class="subtitle">A compact PWA with smooth motion, local persistence, and responsive controls.</p>
-      <div class="status-row">
-        <span id="status" class="status-pill">Online</span>
-        <button id="themeToggle" class="ghost-btn" type="button">Toggle Theme</button>
-      </div>
-    </header>
+  <header class="store-header">
+    <div class="brand-wrap">
+      <p class="brand-kicker">Ecommerce PWA</p>
+      <h1>NovaCart Market</h1>
+    </div>
 
-    <section class="panel" aria-label="Save your notes">
-      <h2>Quick Capture</h2>
-      <div class="input-row">
-        <input id="dataInput" type="text" placeholder="Write something to keep offline..." maxlength="120">
-        <button id="saveBtn" type="button">Save</button>
-      </div>
-      <p id="feedback" class="feedback" aria-live="polite">Ready to save.</p>
-    </section>
+    <div class="store-tools">
+      <label class="search-box" for="searchInput">
+        <input id="searchInput" type="text" placeholder="Search products, brands, categories">
+      </label>
+      <p id="status" class="pill online">Online</p>
+      <button id="installBtn" class="secondary" hidden>Install App</button>
+    </div>
+  </header>
 
-    <section class="panel" aria-label="Saved items list">
-      <div class="panel-head">
-        <h2>Saved Items</h2>
-        <button id="clearBtn" class="ghost-btn" type="button">Clear All</button>
-      </div>
-      <ul id="savedList" class="saved-list"></ul>
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel cart-summary">
+        <h3>Your Cart</h3>
+        <p><span id="cartCount">0</span> items • Total <span id="cartTotal">₹0</span></p>
+        <button id="clearCartBtn" class="danger">Clear Cart</button>
+      </section>
+
+      <section class="panel">
+        <h3>Shop by Category</h3>
+        <div class="category-list">
+          <span>Footwear</span>
+          <span>Backpacks</span>
+          <span>Watches</span>
+          <span>Audio</span>
+        </div>
+      </section>
+
+      <section class="panel mini-banner">
+        <p class="mini-label">Today Only</p>
+        <h4>Extra 10% OFF</h4>
+        <p>Use code <strong>NOVA10</strong> at checkout.</p>
+      </section>
+    </aside>
+
+    <section class="catalog">
+      <article class="hero-banner">
+        <div>
+          <p class="hero-kicker">Spring Drop</p>
+          <h2>Trend picks for your daily carry</h2>
+          <p>Curated accessories and essentials with fast delivery and offline-ready shopping.</p>
+        </div>
+      </article>
+
+      <section class="products" id="productGrid">
+        <article class="card" data-name="Trail Runner Shoes" data-price="2499">
+          <img src="images/product-shoes.svg" alt="Trail Runner Shoes">
+          <p class="tag">Best Seller</p>
+          <h3>Trail Runner Shoes</h3>
+          <p class="price">₹2,499</p>
+          <button class="add-btn">Add to Cart</button>
+        </article>
+
+        <article class="card" data-name="Canvas Backpack" data-price="1599">
+          <img src="images/product-backpack.svg" alt="Canvas Backpack">
+          <p class="tag">New Arrival</p>
+          <h3>Canvas Backpack</h3>
+          <p class="price">₹1,599</p>
+          <button class="add-btn">Add to Cart</button>
+        </article>
+
+        <article class="card" data-name="Analog Watch" data-price="3299">
+          <img src="images/product-watch.svg" alt="Analog Watch">
+          <p class="tag">Premium</p>
+          <h3>Analog Watch</h3>
+          <p class="price">₹3,299</p>
+          <button class="add-btn">Add to Cart</button>
+        </article>
+
+        <article class="card" data-name="Noise-Cancel Earbuds" data-price="1899">
+          <img src="images/product-earbuds.svg" alt="Noise-Cancel Earbuds">
+          <p class="tag">Hot Deal</p>
+          <h3>Noise-Cancel Earbuds</h3>
+          <p class="price">₹1,899</p>
+          <button class="add-btn">Add to Cart</button>
+        </article>
+      </section>
     </section>
   </main>
 

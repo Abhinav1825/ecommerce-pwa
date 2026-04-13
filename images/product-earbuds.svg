@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="350" viewBox="0 0 500 350">
+  <rect width="500" height="350" fill="#f0f0ff"/>
+  <rect x="98" y="108" width="108" height="170" rx="46" fill="#5f5baa"/>
+  <rect x="294" y="108" width="108" height="170" rx="46" fill="#5f5baa"/>
+  <rect x="132" y="212" width="40" height="70" rx="16" fill="#9f9ce4"/>
+  <rect x="328" y="212" width="40" height="70" rx="16" fill="#9f9ce4"/>
+  <circle cx="152" cy="166" r="28" fill="#9f9ce4"/>
+  <circle cx="348" cy="166" r="28" fill="#9f9ce4"/>
+  <text x="24" y="42" font-size="28" fill="#403d84" font-family="Trebuchet MS">Noise-Cancel Earbuds</text>
+</svg>

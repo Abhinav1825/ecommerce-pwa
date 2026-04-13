@@ -1,103 +1,83 @@
-const STORAGE_KEY = "momentum_items";
-const THEME_KEY = "momentum_theme";
+const CART_STORAGE_KEY = "novacart-items";
 
-const statusEl = document.getElementById("status");
-const inputEl = document.getElementById("dataInput");
-const saveBtn = document.getElementById("saveBtn");
-const savedList = document.getElementById("savedList");
-const feedbackEl = document.getElementById("feedback");
-const clearBtn = document.getElementById("clearBtn");
-const themeToggle = document.getElementById("themeToggle");
-
-// Register service worker for offline support.
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker
-    .register("sw.js")
-    .then(() => console.log("Service Worker Registered"))
-    .catch((error) => console.error("Service Worker registration failed", error));
+function getCart() {
+  return JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
 }
 
-function getItems() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  return raw ? JSON.parse(raw) : [];
+function saveCart(cart) {
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
 }
 
-function setItems(items) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+function formatINR(value) {
+  return `\u20b9${value.toLocaleString("en-IN")}`;
 }
 
-function updateStatus() {
+function refreshCartSummary() {
+  const cart = getCart();
+  const count = cart.length;
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  document.getElementById("cartCount").textContent = String(count);
+  document.getElementById("cartTotal").textContent = formatINR(total);
+}
+
+function addToCart(name, price) {
+  const cart = getCart();
+  cart.push({ name, price, addedAt: Date.now() });
+  saveCart(cart);
+  refreshCartSummary();
+  alert(`${name} added to cart`);
+}
+
+function clearCart() {
+  saveCart([]);
+  refreshCartSummary();
+}
+
+function updateNetworkStatus() {
+  const statusEl = document.getElementById("status");
   const online = navigator.onLine;
   statusEl.textContent = online ? "Online" : "Offline";
+  statusEl.classList.toggle("online", online);
   statusEl.classList.toggle("offline", !online);
 }
 
-function renderList() {
-  const items = getItems();
-  savedList.innerHTML = "";
-
-  if (items.length === 0) {
-    const empty = document.createElement("li");
-    empty.className = "empty";
-    empty.textContent = "No saved items yet.";
-    savedList.appendChild(empty);
-    return;
-  }
-
-  items.forEach((item) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    savedList.appendChild(li);
+document.querySelectorAll(".add-btn").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const card = event.currentTarget.closest(".card");
+    addToCart(card.dataset.name, Number(card.dataset.price));
   });
-}
-
-function saveData() {
-  const value = inputEl.value.trim();
-
-  if (!value) {
-    feedbackEl.textContent = "Type something before saving.";
-    inputEl.focus();
-    return;
-  }
-
-  const items = getItems();
-  items.unshift(value);
-  setItems(items.slice(0, 8));
-  renderList();
-  inputEl.value = "";
-  feedbackEl.textContent = navigator.onLine
-    ? "Saved successfully."
-    : "Saved locally while offline.";
-}
-
-function clearAll() {
-  setItems([]);
-  renderList();
-  feedbackEl.textContent = "All saved items cleared.";
-}
-
-function applyTheme(theme) {
-  document.body.classList.toggle("dark", theme === "dark");
-  localStorage.setItem(THEME_KEY, theme);
-}
-
-function toggleTheme() {
-  const nextTheme = document.body.classList.contains("dark") ? "light" : "dark";
-  applyTheme(nextTheme);
-}
-
-window.addEventListener("online", updateStatus);
-window.addEventListener("offline", updateStatus);
-saveBtn.addEventListener("click", saveData);
-clearBtn.addEventListener("click", clearAll);
-themeToggle.addEventListener("click", toggleTheme);
-inputEl.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    saveData();
-  }
 });
 
-const preferredTheme = localStorage.getItem(THEME_KEY) || "light";
-applyTheme(preferredTheme);
-updateStatus();
-renderList();
+document.getElementById("clearCartBtn").addEventListener("click", clearCart);
+window.addEventListener("online", updateNetworkStatus);
+window.addEventListener("offline", updateNetworkStatus);
+
+let deferredInstallPrompt;
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  document.getElementById("installBtn").hidden = false;
+});
+
+document.getElementById("installBtn").addEventListener("click", async () => {
+  if (!deferredInstallPrompt) {
+    return;
+  }
+
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  document.getElementById("installBtn").hidden = true;
+});
+
+refreshCartSummary();
+updateNetworkStatus();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch((error) => {
+      console.error("Service worker registration failed:", error);
+    });
+  });
+}

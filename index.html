@@ -9,90 +9,104 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="announcement">Free shipping above ₹1,499 • 7-day easy returns • COD available</div>
+  <div class="top-strip">Mega Sale: Up to 40% off accessories • Free express delivery over ₹1,499</div>
 
-  <header class="store-header">
-    <div class="brand-wrap">
-      <p class="brand-kicker">Ecommerce PWA</p>
-      <h1>NovaCart Market</h1>
+  <header class="shell nav">
+    <div class="logo-wrap">
+      <p class="logo-badge">N</p>
+      <div>
+        <p class="logo-kicker">Ecommerce PWA</p>
+        <h1>NovaCart</h1>
+      </div>
     </div>
 
-    <div class="store-tools">
-      <label class="search-box" for="searchInput">
-        <input id="searchInput" type="text" placeholder="Search products, brands, categories">
-      </label>
+    <nav class="menu" aria-label="Primary">
+      <a href="#">Home</a>
+      <a href="#">New In</a>
+      <a href="#">Collections</a>
+      <a href="#">Offers</a>
+    </nav>
+
+    <div class="action-wrap">
       <p id="status" class="pill online">Online</p>
       <button id="installBtn" class="secondary" hidden>Install App</button>
     </div>
   </header>
 
-  <main class="layout">
-    <aside class="sidebar">
-      <section class="panel cart-summary">
-        <h3>Your Cart</h3>
+  <section class="shell hero">
+    <article class="hero-left">
+      <p class="hero-kicker">Spring 2026 Lookbook</p>
+      <h2>Style that ships fast and works offline.</h2>
+      <p>Discover best-selling picks curated for daily life. Add to cart instantly and keep browsing even with unstable internet.</p>
+      <div class="hero-cta">
+        <a href="#productGrid" class="cta-main">Shop Now</a>
+        <a href="#" class="cta-ghost">Explore Trends</a>
+      </div>
+      <div class="metrics">
+        <div><strong>12k+</strong><span>Happy Buyers</span></div>
+        <div><strong>4.8/5</strong><span>Average Rating</span></div>
+        <div><strong>48h</strong><span>Fast Delivery</span></div>
+      </div>
+    </article>
+
+    <article class="hero-right">
+      <h3>Quick Search</h3>
+      <label class="search-box" for="searchInput">
+        <input id="searchInput" type="text" placeholder="Search products, brands, categories">
+      </label>
+      <p class="search-note">Try: shoes, backpack, watch, earbuds</p>
+
+      <section class="cart-summary">
+        <h3>Cart Snapshot</h3>
         <p><span id="cartCount">0</span> items • Total <span id="cartTotal">₹0</span></p>
         <button id="clearCartBtn" class="danger">Clear Cart</button>
       </section>
+    </article>
+  </section>
 
-      <section class="panel">
-        <h3>Shop by Category</h3>
-        <div class="category-list">
-          <span>Footwear</span>
-          <span>Backpacks</span>
-          <span>Watches</span>
-          <span>Audio</span>
-        </div>
-      </section>
+  <main class="shell catalog">
+    <div class="section-head">
+      <h3>Trending Picks</h3>
+      <div class="chips" aria-hidden="true">
+        <span>Footwear</span>
+        <span>Travel</span>
+        <span>Wearables</span>
+        <span>Audio</span>
+      </div>
+    </div>
 
-      <section class="panel mini-banner">
-        <p class="mini-label">Today Only</p>
-        <h4>Extra 10% OFF</h4>
-        <p>Use code <strong>NOVA10</strong> at checkout.</p>
-      </section>
-    </aside>
-
-    <section class="catalog">
-      <article class="hero-banner">
-        <div>
-          <p class="hero-kicker">Spring Drop</p>
-          <h2>Trend picks for your daily carry</h2>
-          <p>Curated accessories and essentials with fast delivery and offline-ready shopping.</p>
-        </div>
+    <section class="products" id="productGrid">
+      <article class="card" data-name="Trail Runner Shoes" data-price="2499">
+        <img src="images/product-shoes.svg" alt="Trail Runner Shoes">
+        <p class="tag">Best Seller</p>
+        <h3>Trail Runner Shoes</h3>
+        <p class="price">₹2,499</p>
+        <button class="add-btn">Add to Cart</button>
       </article>
 
-      <section class="products" id="productGrid">
-        <article class="card" data-name="Trail Runner Shoes" data-price="2499">
-          <img src="images/product-shoes.svg" alt="Trail Runner Shoes">
-          <p class="tag">Best Seller</p>
-          <h3>Trail Runner Shoes</h3>
-          <p class="price">₹2,499</p>
-          <button class="add-btn">Add to Cart</button>
-        </article>
+      <article class="card" data-name="Canvas Backpack" data-price="1599">
+        <img src="images/product-backpack.svg" alt="Canvas Backpack">
+        <p class="tag">New Arrival</p>
+        <h3>Canvas Backpack</h3>
+        <p class="price">₹1,599</p>
+        <button class="add-btn">Add to Cart</button>
+      </article>
 
-        <article class="card" data-name="Canvas Backpack" data-price="1599">
-          <img src="images/product-backpack.svg" alt="Canvas Backpack">
-          <p class="tag">New Arrival</p>
-          <h3>Canvas Backpack</h3>
-          <p class="price">₹1,599</p>
-          <button class="add-btn">Add to Cart</button>
-        </article>
+      <article class="card" data-name="Analog Watch" data-price="3299">
+        <img src="images/product-watch.svg" alt="Analog Watch">
+        <p class="tag">Premium</p>
+        <h3>Analog Watch</h3>
+        <p class="price">₹3,299</p>
+        <button class="add-btn">Add to Cart</button>
+      </article>
 
-        <article class="card" data-name="Analog Watch" data-price="3299">
-          <img src="images/product-watch.svg" alt="Analog Watch">
-          <p class="tag">Premium</p>
-          <h3>Analog Watch</h3>
-          <p class="price">₹3,299</p>
-          <button class="add-btn">Add to Cart</button>
-        </article>
-
-        <article class="card" data-name="Noise-Cancel Earbuds" data-price="1899">
-          <img src="images/product-earbuds.svg" alt="Noise-Cancel Earbuds">
-          <p class="tag">Hot Deal</p>
-          <h3>Noise-Cancel Earbuds</h3>
-          <p class="price">₹1,899</p>
-          <button class="add-btn">Add to Cart</button>
-        </article>
-      </section>
+      <article class="card" data-name="Noise-Cancel Earbuds" data-price="1899">
+        <img src="images/product-earbuds.svg" alt="Noise-Cancel Earbuds">
+        <p class="tag">Hot Deal</p>
+        <h3>Noise-Cancel Earbuds</h3>
+        <p class="price">₹1,899</p>
+        <button class="add-btn">Add to Cart</button>
+      </article>
     </section>
   </main>
 

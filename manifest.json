@@ -1,13 +1,13 @@
 {
-  "name": "NovaCart Ecommerce PWA",
+  "name": "NovaCart — Ecommerce PWA",
   "short_name": "NovaCart",
-  "description": "An offline-capable ecommerce Progressive Web App demo.",
+  "description": "A modern, offline-capable ecommerce Progressive Web App with curated products and seamless browsing.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#f4f8fb",
-  "theme_color": "#0a7e8c",
+  "background_color": "#f8fafc",
+  "theme_color": "#0f172a",
   "icons": [
     {
       "src": "./images/icon.svg",

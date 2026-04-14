@@ -3,112 +3,219 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a7e8c">
-  <title>Ecommerce PWA</title>
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="NovaCart — a modern offline-capable ecommerce Progressive Web App with curated products, fast delivery, and seamless browsing.">
+  <title>NovaCart — Ecommerce PWA</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="top-strip">Mega Sale: Up to 40% off accessories • Free express delivery over ₹1,499</div>
 
-  <header class="shell nav">
+  <!-- Promo Strip -->
+  <div class="top-strip" id="promoStrip">
+    <span>🔥 Mega Sale: Up to 40% off accessories</span>
+    <span class="strip-divider">•</span>
+    <span>Free express delivery over ₹1,499</span>
+  </div>
+
+  <!-- Navigation -->
+  <header class="shell nav" id="mainNav">
     <div class="logo-wrap">
-      <p class="logo-badge">N</p>
+      <div class="logo-badge" aria-hidden="true">N</div>
       <div>
         <p class="logo-kicker">Ecommerce PWA</p>
         <h1>NovaCart</h1>
       </div>
     </div>
 
-    <nav class="menu" aria-label="Primary">
-      <a href="#">Home</a>
-      <a href="#">New In</a>
-      <a href="#">Collections</a>
-      <a href="#">Offers</a>
+    <nav class="menu" aria-label="Primary navigation">
+      <a href="#" id="navHome" class="menu-link active">Home</a>
+      <a href="#" id="navNewIn" class="menu-link">New In</a>
+      <a href="#" id="navCollections" class="menu-link">Collections</a>
+      <a href="#" id="navOffers" class="menu-link">Offers</a>
     </nav>
 
     <div class="action-wrap">
-      <p id="status" class="pill online">Online</p>
-      <button id="installBtn" class="secondary" hidden>Install App</button>
+      <p id="status" class="pill online">● Online</p>
+      <button id="installBtn" class="btn-install" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Install
+      </button>
     </div>
   </header>
 
-  <section class="shell hero">
+  <!-- Hero Section -->
+  <section class="shell hero" id="heroSection">
     <article class="hero-left">
       <p class="hero-kicker">Spring 2026 Lookbook</p>
-      <h2>Style that ships fast and works offline.</h2>
-      <p>Discover best-selling picks curated for daily life. Add to cart instantly and keep browsing even with unstable internet.</p>
+      <h2>Style that ships fast <span class="gradient-text">&amp; works offline.</span></h2>
+      <p class="hero-desc">Discover best-selling picks curated for daily life. Add to cart instantly and keep browsing even with unstable internet.</p>
       <div class="hero-cta">
-        <a href="#productGrid" class="cta-main">Shop Now</a>
-        <a href="#" class="cta-ghost">Explore Trends</a>
+        <a href="#productGrid" class="cta-main" id="ctaShopNow">
+          Shop Now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#" class="cta-ghost" id="ctaTrends">Explore Trends</a>
       </div>
       <div class="metrics">
-        <div><strong>12k+</strong><span>Happy Buyers</span></div>
-        <div><strong>4.8/5</strong><span>Average Rating</span></div>
-        <div><strong>48h</strong><span>Fast Delivery</span></div>
+        <div class="metric-card">
+          <strong>12k+</strong>
+          <span>Happy Buyers</span>
+        </div>
+        <div class="metric-card">
+          <strong>4.8/5</strong>
+          <span>Average Rating</span>
+        </div>
+        <div class="metric-card">
+          <strong>48h</strong>
+          <span>Fast Delivery</span>
+        </div>
       </div>
     </article>
 
     <article class="hero-right">
-      <h3>Quick Search</h3>
-      <label class="search-box" for="searchInput">
-        <input id="searchInput" type="text" placeholder="Search products, brands, categories">
-      </label>
-      <p class="search-note">Try: shoes, backpack, watch, earbuds</p>
+      <div class="search-section">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Quick Search
+        </h3>
+        <label class="search-box" for="searchInput">
+          <input id="searchInput" type="text" placeholder="Search products, brands, categories…">
+        </label>
+        <p class="search-note">Try: shoes, backpack, watch, earbuds</p>
+      </div>
 
-      <section class="cart-summary">
-        <h3>Cart Snapshot</h3>
-        <p><span id="cartCount">0</span> items • Total <span id="cartTotal">₹0</span></p>
-        <button id="clearCartBtn" class="danger">Clear Cart</button>
+      <section class="cart-summary" id="cartSummary">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart Snapshot
+        </h3>
+        <div class="cart-info">
+          <div class="cart-counts">
+            <span class="cart-count-num" id="cartCount">0</span>
+            <span class="cart-count-label">items</span>
+          </div>
+          <div class="cart-total-wrap">
+            <span class="cart-total-label">Total</span>
+            <span class="cart-total-num" id="cartTotal">₹0</span>
+          </div>
+        </div>
+        <button id="clearCartBtn" class="btn-danger">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          Clear Cart
+        </button>
       </section>
     </article>
   </section>
 
-  <main class="shell catalog">
+  <!-- Product Catalog -->
+  <main class="shell catalog" id="catalogSection">
     <div class="section-head">
-      <h3>Trending Picks</h3>
-      <div class="chips" aria-hidden="true">
-        <span>Footwear</span>
-        <span>Travel</span>
-        <span>Wearables</span>
-        <span>Audio</span>
+      <div>
+        <p class="section-kicker">Curated Collection</p>
+        <h3>Trending Picks</h3>
+      </div>
+      <div class="chips" id="categoryChips">
+        <button class="chip active" data-category="all">All</button>
+        <button class="chip" data-category="footwear">Footwear</button>
+        <button class="chip" data-category="travel">Travel</button>
+        <button class="chip" data-category="wearables">Wearables</button>
+        <button class="chip" data-category="audio">Audio</button>
       </div>
     </div>
 
     <section class="products" id="productGrid">
-      <article class="card" data-name="Trail Runner Shoes" data-price="2499">
-        <img src="images/product-shoes.svg" alt="Trail Runner Shoes">
-        <p class="tag">Best Seller</p>
-        <h3>Trail Runner Shoes</h3>
-        <p class="price">₹2,499</p>
-        <button class="add-btn">Add to Cart</button>
+      <article class="card" data-name="Trail Runner Shoes" data-price="2499" data-category="footwear">
+        <div class="card-img-wrap">
+          <img src="images/product-shoes.svg" alt="Trail Runner Shoes" loading="lazy">
+          <span class="tag tag-best">Best Seller</span>
+        </div>
+        <div class="card-body">
+          <div class="card-rating">★★★★★ <span>4.9</span></div>
+          <h3>Trail Runner Shoes</h3>
+          <p class="price">₹2,499</p>
+        </div>
+        <button class="add-btn" id="addShoes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add to Cart
+        </button>
       </article>
 
-      <article class="card" data-name="Canvas Backpack" data-price="1599">
-        <img src="images/product-backpack.svg" alt="Canvas Backpack">
-        <p class="tag">New Arrival</p>
-        <h3>Canvas Backpack</h3>
-        <p class="price">₹1,599</p>
-        <button class="add-btn">Add to Cart</button>
+      <article class="card" data-name="Canvas Backpack" data-price="1599" data-category="travel">
+        <div class="card-img-wrap">
+          <img src="images/product-backpack.svg" alt="Canvas Backpack" loading="lazy">
+          <span class="tag tag-new">New Arrival</span>
+        </div>
+        <div class="card-body">
+          <div class="card-rating">★★★★☆ <span>4.6</span></div>
+          <h3>Canvas Backpack</h3>
+          <p class="price">₹1,599</p>
+        </div>
+        <button class="add-btn" id="addBackpack">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add to Cart
+        </button>
       </article>
 
-      <article class="card" data-name="Analog Watch" data-price="3299">
-        <img src="images/product-watch.svg" alt="Analog Watch">
-        <p class="tag">Premium</p>
-        <h3>Analog Watch</h3>
-        <p class="price">₹3,299</p>
-        <button class="add-btn">Add to Cart</button>
+      <article class="card" data-name="Analog Watch" data-price="3299" data-category="wearables">
+        <div class="card-img-wrap">
+          <img src="images/product-watch.svg" alt="Analog Watch" loading="lazy">
+          <span class="tag tag-premium">Premium</span>
+        </div>
+        <div class="card-body">
+          <div class="card-rating">★★★★★ <span>4.8</span></div>
+          <h3>Analog Watch</h3>
+          <p class="price">₹3,299</p>
+        </div>
+        <button class="add-btn" id="addWatch">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add to Cart
+        </button>
       </article>
 
-      <article class="card" data-name="Noise-Cancel Earbuds" data-price="1899">
-        <img src="images/product-earbuds.svg" alt="Noise-Cancel Earbuds">
-        <p class="tag">Hot Deal</p>
-        <h3>Noise-Cancel Earbuds</h3>
-        <p class="price">₹1,899</p>
-        <button class="add-btn">Add to Cart</button>
+      <article class="card" data-name="Noise-Cancel Earbuds" data-price="1899" data-category="audio">
+        <div class="card-img-wrap">
+          <img src="images/product-earbuds.svg" alt="Noise-Cancel Earbuds" loading="lazy">
+          <span class="tag tag-hot">Hot Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-rating">★★★★★ <span>4.7</span></div>
+          <h3>Noise-Cancel Earbuds</h3>
+          <p class="price">₹1,899</p>
+        </div>
+        <button class="add-btn" id="addEarbuds">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add to Cart
+        </button>
       </article>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        <div class="logo-badge" aria-hidden="true">N</div>
+        <div>
+          <strong>NovaCart</strong>
+          <p>Offline-capable ecommerce PWA</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 NovaCart. Built as a PWA demo.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
 
   <script src="app.js"></script>
 </body>
